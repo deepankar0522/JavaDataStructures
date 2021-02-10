@@ -9,5 +9,13 @@ public class Main {
         Employee mikeWilson = new Employee("Mike", "Wilson", 14);
 
 
+        SimpleHashTable hashTable = new SimpleHashTable();
+        hashTable.put("Jones", daneJones);
+        hashTable.put("Doe", johnDoe);
+        hashTable.put("Smith", marySmith);
+        hashTable.put("wilson", mikeWilson);
+
+        hashTable.printHashtable();
+        System.out.println(hashTable.get("Doe"));
     }
 }
