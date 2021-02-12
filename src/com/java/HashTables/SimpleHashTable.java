@@ -27,6 +27,22 @@ public class SimpleHashTable {
             hashTable[hashedKey] = new StoredEmployee(key, employee);
     }
 
+    public Employee remove(String key) {
+        int hashedKey = findKey(key);
+        if (hashedKey == -1)
+            return null;
+        Employee employee = hashTable[hashedKey].employee;
+        hashTable[hashedKey] = null;
+
+        StoredEmployee[] oldHashTable = hashTable;
+        hashTable = new StoredEmployee[oldHashTable.length];
+        for (StoredEmployee oldTable : oldHashTable) {
+            if (oldTable != null)
+                put(oldTable.key, oldTable.employee);
+        }
+        return employee;
+    }
+
     private int findKey(String key) {
         int hashedKey = hashKey(key);
         if (hashTable[hashedKey] != null && hashTable[hashedKey].key.equals(key))
@@ -63,11 +79,11 @@ public class SimpleHashTable {
     }
 
     public void printHashtable() {
-        for (StoredEmployee employee : hashTable) {
-            if (employee==null)
+        for (int i = 0; i < hashTable.length; i++) {
+            if (hashTable[i] == null)
                 System.out.println("empty");
             else
-                System.out.println(employee.employee);
+                System.out.println("Position: " + i +" => "+ hashTable[i].employee);
         }
     }
 }
