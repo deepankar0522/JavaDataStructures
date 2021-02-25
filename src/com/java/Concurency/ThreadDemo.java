@@ -16,9 +16,9 @@ public class ThreadDemo {
         thread1.start();
         thread2.start();
 
-        try{
+        try {
             thread2.join();
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("Inside main");
