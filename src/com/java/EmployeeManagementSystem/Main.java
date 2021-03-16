@@ -2,6 +2,7 @@ package com.java.EmployeeManagementSystem;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +26,10 @@ public class Main {
         employeeList.add(new Employee(266, "Sanvi Pandey", 26, "Female", "Product Development", 2015, 28900.0));
         employeeList.add(new Employee(277, "Anuj Chettiar", 31, "Male", "Product Development", 2012, 35700.0));
 
+        List<Integer> intList = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            intList.add(i);
+        }
 
         //How many male and female employees are there in the organization?
 
@@ -78,7 +83,19 @@ public class Main {
 
         //What is the average salary and total salary of the whole organization?
         DoubleSummaryStatistics collect = employeeList.stream().collect(Collectors.summarizingDouble(Employee::getSalary));
-        System.out.println("Average salary: " + collect.getAverage() + " : " + "Total salary: " + collect.getSum());
+        //System.out.println("Average salary: " + collect.getAverage() + " : " + "Total salary: " + collect.getSum());
+
+        //List<Integer> integers = Arrays.asList(12, 23, 4, 6, 7, 2, 8);
+
+        IntStream.range(0, intList.size())
+                .filter(n -> n % 2 != 0)
+                .forEach(n -> System.out.print(intList.get(n) * 2+" "));
+
+       // Map<String, Double> employeeMapIncrementedSalaryByDepartment = employeeList.stream().filter(employee -> employee.getDepartment() == "Product Development");
+
 
     }
+
+
+
 }
